@@ -1,9 +1,12 @@
-import Image from "next/image";
+import Sidebar from "@/components/Sidebar";
 
 export default function Home() {
   return (
-    <div>
-      <h1>Booletproof</h1>
+    <div className="flex flex-col md:flex-row">
+      <div className="w-full md:w-[20%]">
+        <Sidebar />
+      </div>
+      <div className="w-full md:w-[80%]"></div>
     </div>
   );
 }
