@@ -1,5 +1,8 @@
+'use client'
+
 import Link from "next/link"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import {
   DashboardSquare02Icon,
   WaterfallUp02Icon,
@@ -11,6 +14,23 @@ import {
 } from 'hugeicons-react'
 
 const Sidebar = () => {
+  const router = useRouter()
+
+  const handleLogout = async () => {
+    try {
+      const res = await fetch('/api/auth/logout', {
+        method: 'POST',
+      })
+      const data = await res.json()
+
+      if(res.ok) {
+        router.push('/login')
+      } 
+    } catch (error) {
+      console.log(`an error occurred: ${error.message}`)
+    }
+  }
+
   return (
     <div className='flex flex-col justify-between gap-6 bg-white h-screen px-12 py-6 fixed'>
 
@@ -95,7 +115,7 @@ const Sidebar = () => {
           color={"#000000"}
           variant={"stroke"}
         />
-        <p className="text-sm">Logout</p>
+        <button className="text-sm" onClick={handleLogout}>Logout</button>
       </div>
     </div>
   )
