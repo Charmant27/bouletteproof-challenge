@@ -32,11 +32,11 @@ const Login = () => {
             const data = await res.json()
 
             if (res.ok) {
+                localStorage.setItem('authToken', data.token)
                 router.push('/')
-                setIsSubmitting(false)
-                setMessage(data.message)
             } else {
                 setMessage(data.message)
+                setIsSubmitting(false)
             }
 
         } catch (error) {

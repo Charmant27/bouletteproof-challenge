@@ -29,10 +29,12 @@ export async function POST(req, res) {
             }
         )
 
+
         const cookie = serialize('authToken', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             maxAge: 60 * 60,
+            path: '/',
         })
 
         const headers = new Headers()

@@ -1,3 +1,8 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+
 import Image from 'next/image'
 import {
     Mail01Icon,
@@ -11,6 +16,39 @@ import {
 import Trends from './Trends'
 
 const Dashboard = () => {
+    const router = useRouter()
+    const [user, setUser] = useState()
+
+    useEffect(() => {
+        try {
+          const getUser = async () => {
+            const token = localStorage.getItem('authToken')
+    
+            if (!token) {
+              throw new Error('No token found. Please login.');
+          }
+    
+            const res = await fetch('api/auth/user', {
+              method: 'GET',
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            })
+            const data = await res.json()
+    
+            if (res.ok) {
+              setUser(data.user)
+            } else {
+              throw new Error('Failed to retrieve user information')
+            }
+          }
+          getUser()
+        } catch (error) {
+          console.log(error.message)
+        }
+    
+      }, [])
+
     return (
         <section>
             {/* container */}
@@ -49,8 +87,8 @@ const Dashboard = () => {
                                 className="object-cover w-10 h-10 rounded-[50%]"
                             />
                             <div>
-                                <h3 className="font-bold text-sm">Nora Weston</h3>
-                                <p className="text-slate-400 font-light text-xs">Site and System Engineer</p>
+                                <h3 className="font-bold text-sm">{user?.name}</h3>
+                                <p className="text-slate-400 font-light text-xs">{user?.role}</p>
                             </div>
                         </div>
                     </div>
