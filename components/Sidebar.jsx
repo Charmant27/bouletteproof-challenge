@@ -12,7 +12,7 @@ import {
 
 const Sidebar = () => {
   return (
-    <div className='flex flex-col justify-between gap-6 bg-white h-screen px-12 py-6'>
+    <div className='flex flex-col justify-between gap-6 bg-white h-screen px-12 py-6 fixed'>
 
       {/* links */}
       <div className="flex flex-col gap-3">

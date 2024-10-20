@@ -1,16 +1,22 @@
 import Image from 'next/image'
-import { 
+import {
     Mail01Icon,
     Notification01Icon,
     ChartHistogramIcon,
-    DatabaseAddIcon
- } from 'hugeicons-react'
+    DatabaseAddIcon,
+    ComputerVideoIcon,
+    ArrowRight01Icon,
+    PlusSignIcon
+} from 'hugeicons-react'
+import Trends from './Trends'
 
 const Dashboard = () => {
     return (
         <section>
             {/* container */}
             <div className='flex flex-col gap-12'>
+
+                {/* header */}
                 <div className='flex flex-col md:flex-row justify-between items-center'>
 
                     <div className='flex flex-col gap-1'>
@@ -50,12 +56,14 @@ const Dashboard = () => {
                     </div>
 
                 </div>
+                {/* end of header */}
 
-                <div className='flex flex-col md:flex-row gap-6'>
-                    <div className='flex flex-col gap-3'>
+                <div className='flex flex-col md:flex-row gap-8'>
+                    {/* first row */}
+                    <div className='flex flex-col w-[70%] gap-3'>
                         {/* visitors, bounce rate and session duration */}
-                        <div className='flex gap-6 flex-wrap'>
-                        {/* card 1 */}
+                        <div className='flex gap-6 pb-6'>
+                            {/* card 1 */}
                             <div
                                 className='bg-violet-300 w-[250px] text-black flex flex-col gap-5 items-center px-14 py-3 rounded-xl'
                             >
@@ -113,8 +121,194 @@ const Dashboard = () => {
                             {/* end of card 3 */}
                         </div>
                         {/* end of visitors, bounce rate and session duration */}
+
+                        <div>
+                            <Trends />
+                        </div>
                     </div>
-                    <div></div>
+
+                    {/* second row */}
+                    <div className='flex flex-col w-[30%] gap-10'>
+
+                        <div className='bg-[#07BDCB] flex flex-col gap-6 p-4 rounded-lg text-slate-700'>
+                            <h2 className='font-extrabold'>Premium product to be launched</h2>
+                            <p className='text-sm'><span className='font-bold text-base'>$6.50</span> / Month</p>
+                            <p className='text-sm'>$70 Billed Annually</p>
+                            <button className='bg-[#198c94] text-white font-light p-2 rounded-md'>Notify me</button>
+                        </div>
+
+                        <div className='bg-white flex flex-col gap-6 rounded-lg px-4 py-6'>
+                            {/* title */}
+                            <div className='flex flex-col gap-2'>
+                                <div className='flex items-center gap-2'>
+                                    <div className='bg-violet-300 p-2 rounded-[50%]'>
+                                        <ComputerVideoIcon
+                                            size={14}
+                                            color={"#000000"}
+                                            variant={"stroke"}
+                                        />
+                                    </div>
+                                    <h1 className='font-semibold'>Daily Meeting</h1>
+                                </div>
+                                <div className='flex items-center justify-center gap-4'>
+                                    <p className='text-xs bg-gray-100 p-2 rounded-3xl text-gray-500'>12+ person</p>
+                                    <p className='text-xs text-gray-500'>8:00 PM</p>
+                                </div>
+                            </div>
+                            {/* end of title */}
+                            <div>
+                                <div className='flex flex-col gap-2'>
+                                    <h3 className='text-sm'>Meeting Leaders</h3>
+                                    <div className='flex'>
+                                        <Image
+                                            src='/profile.jpg'
+                                            width={20}
+                                            height={20}
+                                            alt="profile"
+                                            className="object-cover w-8 h-8 rounded-[50%] border-[3px] border-white"
+                                        />
+                                        <Image
+                                            src='/profile2.jpg'
+                                            width={20}
+                                            height={20}
+                                            alt="profile"
+                                            className="object-cover w-8 h-8 rounded-[50%] border-[3px] border-white ml-[-10px]"
+                                        />
+                                        <Image
+                                            src='/profile3.jpg'
+                                            width={20}
+                                            height={20}
+                                            alt="profile"
+                                            className="object-cover w-8 h-8 rounded-[50%] border-[3px] border-white ml-[-10px]"
+                                        />
+                                    </div>
+                                    <button className='text-sm bg-black px-3 py-2 text-white rounded-xl'>
+                                        Join Meeting
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            className='bg-white rounded-lg flex flex-col gap-5 px-4 py-6'
+                        >
+                            <h1>Team Members</h1>
+                            {/* team members section */}
+                            <div className='flex flex-col gap-5'>
+                                {/* member one */}
+                                <div className='flex items-center justify-between bg-gray-300 p-3 rounded-xl'>
+                                    <div className='flex items-center gap-4'>
+                                        <Image
+                                            src='/profile2.jpg'
+                                            width={80}
+                                            height={80}
+                                            alt="profile"
+                                            className="object-cover w-10 h-10 rounded-[50%]"
+                                        />
+                                        <div className='flex flex-col gap-1'>
+                                            <h3 className='text-xs font-bold'>Gatera Charmant</h3>
+                                            <p className='text-xs text-gray-600'>Project Manager</p>
+                                        </div>
+                                    </div>
+                                    <div className='pl-5'>
+                                        <ArrowRight01Icon
+                                            size={18}
+                                            color={"#000000"}
+                                            variant={"stroke"}
+                                        />
+                                    </div>
+                                </div>
+                                {/* end of member one */}
+
+                                {/* member two */}
+                                <div className='flex items-center justify-between bg-gray-300 p-3 rounded-xl'>
+                                    <div className='flex items-center gap-4'>
+                                        <Image
+                                            src='/profile3.jpg'
+                                            width={80}
+                                            height={80}
+                                            alt="profile"
+                                            className="object-cover w-10 h-10 rounded-[50%]"
+                                        />
+                                        <div className='flex flex-col gap-1'>
+                                            <h3 className='text-xs font-bold'>Janet Doe</h3>
+                                            <p className='text-xs text-gray-600'>HR Head</p>
+                                        </div>
+                                    </div>
+                                    <div className='pl-5'>
+                                        <ArrowRight01Icon
+                                            size={18}
+                                            color={"#000000"}
+                                            variant={"stroke"}
+                                        />
+                                    </div>
+                                </div>
+                                {/* end of member two */}
+
+                                {/* member three */}
+                                <div className='flex items-center justify-between bg-gray-300 p-3 rounded-xl'>
+                                    <div className='flex items-center gap-4'>
+                                        <Image
+                                            src='/profile4.jpg'
+                                            width={80}
+                                            height={80}
+                                            alt="profile"
+                                            className="object-cover w-10 h-10 rounded-[50%]"
+                                        />
+                                        <div className='flex flex-col gap-1'>
+                                            <h3 className='text-xs font-bold'>John Doe</h3>
+                                            <p className='text-xs text-gray-600'>Deputy HR</p>
+                                        </div>
+                                    </div>
+                                    <div className='pl-5'>
+                                        <ArrowRight01Icon
+                                            size={18}
+                                            color={"#000000"}
+                                            variant={"stroke"}
+                                        />
+                                    </div>
+                                </div>
+                                {/* end of member three */}
+
+                                {/* member four */}
+                                <div className='flex items-center justify-between bg-gray-300 p-3 rounded-xl'>
+                                    <div className='flex items-center gap-4'>
+                                        <Image
+                                            src='/profile5.jpg'
+                                            width={80}
+                                            height={80}
+                                            alt="profile"
+                                            className="object-cover w-10 h-10 rounded-[50%]"
+                                        />
+                                        <div className='flex flex-col gap-1'>
+                                            <h3 className='text-xs font-bold'>Ngenzi Bruce</h3>
+                                            <p className='text-xs text-gray-600'>Co-ordinator</p>
+                                        </div>
+                                    </div>
+                                    <div className='pl-5'>
+                                        <ArrowRight01Icon
+                                            size={18}
+                                            color={"#000000"}
+                                            variant={"stroke"}
+                                        />
+                                    </div>
+                                </div>
+                                {/* end of member four */}
+                            </div>
+                            {/* end of members section */}
+
+                            <button className='bg-[#07BDCB] p-2 flex items-center justify-center gap-2 rounded-xl text-sm'>
+                                <span className='bg-[#32f1ff] rounded-[50%]'>
+                                    <PlusSignIcon
+                                        size={18}
+                                        color={"#000000"}
+                                        variant={"stroke"}
+                                    />
+                                </span> Invite Member(s)
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
 
             </div>
