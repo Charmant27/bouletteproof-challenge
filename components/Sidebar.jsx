@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import {
   DashboardSquare02Icon,
@@ -15,6 +16,7 @@ import {
 
 const Sidebar = () => {
   const router = useRouter()
+  const [user, setUser] = useState()
 
   const handleLogout = async () => {
     try {
@@ -23,13 +25,43 @@ const Sidebar = () => {
       })
       const data = await res.json()
 
-      if(res.ok) {
+      if (res.ok) {
         router.push('/login')
-      } 
+      }
     } catch (error) {
       console.log(`an error occurred: ${error.message}`)
     }
   }
+
+  useEffect(() => {
+    try {
+      const getUser = async () => {
+        const token = localStorage.getItem('authToken')
+
+        if (!token) {
+          throw new Error('No token found. Please login.');
+      }
+
+        const res = await fetch('api/auth/user', {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        const data = await res.json()
+
+        if (res.ok) {
+          setUser(data.user)
+        } else {
+          throw new Error('Failed to retrieve user information')
+        }
+      }
+      getUser()
+    } catch (error) {
+      console.log(error.message)
+    }
+
+  }, [])
 
   return (
     <div className='flex flex-col justify-between gap-6 bg-white h-screen px-12 py-6 fixed'>
@@ -105,8 +137,8 @@ const Sidebar = () => {
           alt="profile"
           className="object-cover w-12 h-12 rounded-[50%]"
         />
-        <h3 className="font-bold">Nora Weston</h3>
-        <p className="text-sm text-slate-400 font-light">Site and System Engineer</p>
+        <h3 className="font-bold">{user?.name}</h3>
+        <p className="text-sm text-slate-400 font-light">{user?.role}</p>
       </div>
 
       <div className="flex items-center gap-2">
